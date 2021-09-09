@@ -1,9 +1,11 @@
 # django-by-example
-Only a backup of the examples from the book: Django 3 by Example - Antonio Melé
+Backup of the examples from the book: Django 3 by Example - Antonio Melé
 
 ## Commands
 
 ```sh
+django-admin startproject bookmarks
+django-admin startapp account
 python manage.py startapp blog
 python manage.py createsuperuser
 python manage.py runserver
