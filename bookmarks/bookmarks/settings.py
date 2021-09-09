@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 import configparser
 
 from pathlib import Path
@@ -30,7 +31,7 @@ SECRET_KEY = config['django-secrets']['secret_key']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +133,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # Login parameters
 
 LOGIN_REDIRECT_URL = 'dashboard'
@@ -140,3 +144,28 @@ LOGOUT_URL = 'logout'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
+# Media
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+# A new authentication method
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default auth
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
+]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_TWITTER_KEY = '' # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET = '' # Twitter API Secret
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' # Google Consumer Secret
