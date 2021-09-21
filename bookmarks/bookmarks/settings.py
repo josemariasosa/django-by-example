@@ -14,6 +14,8 @@ import os
 import configparser
 
 from pathlib import Path
+from django.urls import reverse_lazy
+
 
 config = configparser.ConfigParser(interpolation=None)
 config.read('config.ini')
@@ -33,6 +35,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
+# Allow the get_absoute_url() method for given models
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+}
 
 # Application definition
 
