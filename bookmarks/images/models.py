@@ -18,6 +18,9 @@ class Image(models.Model):
     description = models.TextField(blank=True)
     created = models.DateField(auto_now_add=True, db_index=True)
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return self.title
 

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 use_cert=false
 
 while getopts "c" flag; do
