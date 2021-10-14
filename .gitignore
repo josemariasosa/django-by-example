@@ -131,4 +131,5 @@ dmypy.json
 Django-3-by-Example
 config.ini
 *.jpg
+redis-6.2.6/
 
